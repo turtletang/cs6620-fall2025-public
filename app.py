@@ -141,10 +141,22 @@ def serve_audio_segment():
 
 @app.route('/')
 def index():
+    """Display the automated deployment version."""
+    return """
+    <h1>Hello from Automated CI/CD Pipeline!</h1>
+    <p><strong>Version:</strong> 2.0 - Automated Deployment</p>
+    <p><strong>Deployed via:</strong> GitHub Actions + AWS SSM</p>
+    <p><strong>Assignment:</strong> Automated EC2 Deployment</p>
     """
-    Renders the main HTML page for the client-side audio player.
-    """
-    return render_template('index.html') 
+
+@app.route('/health')
+def health():
+    return {
+        'status': 'healthy',
+        'version': '2.0',
+        'deployment_method': 'automated'
+    }
+
 
 @app.route('/select_directory', methods=['POST'])
 def select_directory():
